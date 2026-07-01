@@ -1,0 +1,69 @@
+import numpy as np
+from scipy.interpolate import CubicSpline
+import matplotlib.pyplot as plt
+
+
+# This reads the file and creates a (N, 2) array
+coords = np.loadtxt('/Users/marcello/Documents/MDOlab/tutorial/airfoil/geometry/sc20414_reprocessed.dat')
+
+# To access x and y specifically:
+x = coords[:, 0]
+y = coords[:, 1]
+
+print(coords.shape)
+
+def get_curvilinear_coordinate(coords):
+    # Calculate differences between consecutive points
+    dx = np.diff(coords[:, 0])
+    dy = np.diff(coords[:, 1])
+    
+    # Calculate segment lengths
+    ds = np.sqrt(dx**2 + dy**2)
+    
+    # Cumulative sum starting from 0
+    s = np.concatenate(([0], np.cumsum(ds)))
+    
+    # Normalize s from 0 to 1 (optional, but helpful for mapping)
+    s_norm = s / s[-1]
+    
+    return s, s_norm
+
+# Get the curvilinear s-coordinate
+s, s_norm = get_curvilinear_coordinate(coords)
+xi = np.linspace(0.,1.,len(s))
+xi_new = np.linspace(0.,1.,2*len(s))
+
+s_new = np.interp(xi_new,xi,s_norm)
+
+bc_type = 'clamped' # Optional: enforces specific slopes at ends
+spline_x = CubicSpline(s_norm, coords[:, 0])
+spline_y = CubicSpline(s_norm, coords[:, 1])
+
+# 2. Evaluate the splines at your new, refined curvilinear points
+x_new = spline_x(s_new)
+y_new = spline_y(s_new)
+
+#x_new = np.interp(s_new,s_norm,coords[:,0])
+#y_new = np.interp(s_new,s_norm,coords[:,1])
+
+# Assuming 'coords' is your loaded numpy array
+plt.figure(figsize=(10, 3))
+plt.plot(coords[:, 0], coords[:, 1], 'b-', marker='o', markersize=3)
+plt.fill(coords[:, 0], coords[:, 1], 'skyblue', alpha=0.3) # Fills the shape
+plt.plot(x_new, y_new, 'k-', marker='o', markersize=3)
+# plt.plot(s, 'b-', marker='o', markersize=3)
+# plt.plot(s_norm, 'go-') # Fills the shape
+#plt.axis('equal') # Keeps the aspect ratio 1:1 so the airfoil isn't stretched
+plt.title('Airfoil Geometry Visualization')
+plt.xlabel('x/c')
+plt.ylabel('y/c')
+plt.grid(True, alpha=0.3)
+plt.show()
+
+data = np.column_stack((x_new, y_new))
+
+# Save to a text file
+np.savetxt('/Users/marcello/Documents/MDOlab/tutorial/airfoil/geometry/sc20414_refined.dat', data, 
+           fmt='%18.15e', 
+           delimiter='\t', 
+           header='x\t\ty')

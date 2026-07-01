@@ -754,7 +754,8 @@ def response(kernels, aoa, nt):
     
     return cn 
 
-home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA01_R12_pitch" 
+AOA = 3
+home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_pitch" % AOA
 filename = home_pitch + "/history_05_00002.dat"    
 
 mach = 0.8

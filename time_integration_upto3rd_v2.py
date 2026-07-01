@@ -279,7 +279,7 @@ def time_integration(theta_cl, theta_cl2, h_cl_3, theta_cm, theta_cm2, h_cm_3, d
 
     qq = np.zeros((ndof,nt_int))
 
-    qping = 0.01 # heave 
+    qping = 0.1 # heave 
     qq[2,0] = 0*qping # PING
     qq[3,0] = qping # PING
 
@@ -439,15 +439,17 @@ def response(kernels, aoa, nt):
     
     return cn 
 
-AOA = 3
-MACH = 84
+AOA = 0
+MACH = 76
 # first order kernel 
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_test_2/" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_test/" % AOA
 #home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_SAopts_test/" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine/" % AOA
+# home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine_2/" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine_verylarge/" % AOA
-home_pitch = "/Users/marcello/Documents/SU2/SC20414/M0%s_veryfine/" % MACH
+# home_pitch = "/Users/marcello/Documents/SU2/SC20414/M0%s_veryfine/" % MACH
+home_pitch = "/Users/marcello/Documents/SU2/bscw/M0%s" % MACH
 
 # Michael 
 # home_pitch = "/Users/marcello/Documents/Ael/bscw/Data_from_Michael/AOA0%s" % AOA
@@ -468,6 +470,9 @@ h_cl_2 = data['h_cl_2']
 h_cm_2 = data['h_cm_2']
 h_cl_3 = data['h_cl_3']
 h_cm_3 = data['h_cm_3']
+
+print("Cl0 = ",cl_0)
+print("Cm0 = ",cm_0)
 
 # ================
 
@@ -517,17 +522,17 @@ time_test, aoa = plot_aero_responses(h_cl_1[:m], h_cl_1[2*m:], h_cl_1[m:2*m],
 print(h_cl_1.shape)
 print(h_cl_2.shape)
 print(h_cl_3.shape)
-results = time_integration(h_cl_1, h_cl_2, h_cl_3, h_cm_1, h_cm_2, h_cm_3, delta_t = 2.5e-4, m = m, nt_int = 18000, xi = 0.000, v_inf=123., q = 17500., cl_0 = cl_0, cm_0=cm_0)
+results = time_integration(h_cl_1, h_cl_2, h_cl_3, h_cm_1, h_cm_2, h_cm_3, delta_t = 2.5e-4, m = m, nt_int = 8000, xi = 0.000, v_inf=123., q = 3600., cl_0 = cl_0, cm_0=cm_0)
 
 # SA plain 
-# 0 deg: >9500
-# 1 deg: <10200
-# 2 deg: 10500
-# 3 deg: < 10500
-# 4 deg: < 6000
-# 4.5 deg: < 8000 > 7000???
-# 5 deg: < 6700???
-# 6 deg: <1000, 5 Hz pitch
+# 0 deg: 9650 3.90 Hz
+# 1 deg: 10075 3.95 Hz
+# 2 deg: 10550 4.10 Hz
+# 3 deg: 10100 4.33 Hz
+# 4 deg:  7250 4.5 Hz 
+# 4.5 deg: 7300 4.65 Hz
+# 5 deg: 6600 4.75 Hz 
+# 6 deg: 2900, 5.2 Hz pitch
 
 # SA all options 
 
@@ -545,16 +550,55 @@ results = time_integration(h_cl_1, h_cl_2, h_cl_3, h_cm_1, h_cm_2, h_cm_3, delta
 # 5 deg: 3000???
 
 """
-fine grid
+2D fine grid
 
 0. deg: 9250 3.90 Hz
-3. deg: 10600 < 10800 4.5 Hz
-4. deg: 9500???
-5. deg: <500???
+1. deg: 10500 3.90 Hz
+2. deg: 11250 > q > 11210 4.3 Hz
+3. deg: 10600 < q < 10800 4.5 Hz
+4. deg: 9500??? 4.6 Hz?
+4.5 deg: 7900 4.7 Hz
+5. deg: 5250 4.75 Hz 
+6. deg: 3300??? 5 Hz 
 
 AOA = 3 deg 
 
-M = 0.78: 
-M = 0.82: > 10860 
-M = 0.84: < 11000
+M = 0.74: 9020
+M = 0.76: 9450  4.16 Hz 
+M = 0.78: 10900 4.33 Hz 
+M = 0.80:  10600 < q < 10800 4.5 Hz
+M = 0.82:  10800 4.33 Hz  
+M = 0.84: < 17500 (divergence!) 
+"""
+
+"""
+data out
+
+# Example values
+Mach = 0.82647
+Q    = 1234.567
+
+# Format: Mach to 2 decimals, Q to nearest integer
+filename = f'output_M{Mach:.2f}_Q{round(Q):d}.dat'
+# --> 'output_M0.83_Q1235.dat'
+
+# Assemble the columns into a 2D array of shape (nt_steps, 5)
+data = np.column_stack([
+    time,       # shape (nt_steps,)
+    qq[0, :],   # mode1 displacement
+    qq[2, :],   # mode1 velocity
+    qq[1, :],   # mode2 displacement
+    qq[3, :],   # mode2 velocity
+])
+
+# Write to file
+
+np.savetxt(
+    filename,
+    data,
+    header='time  mode1_disp  mode1_vel  mode2_disp  mode2_vel',
+    fmt='%.6e',       # scientific notation, 6 decimal places
+    delimiter='  ',   # two spaces between columns
+    comments=''       # avoids numpy prepending '#' to the header
+)
 """

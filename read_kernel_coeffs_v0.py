@@ -8,11 +8,19 @@ base_path = "/Users/marcello/Documents/SU2/SC20414/"
 
 n_aoa = len(suffixes)
 
+# convergence check 
+A_ref = np.deg2rad(1.)
+
 m = []
 h_cl_1_list = []
 h_cl_2_list = []
+h_cl_3_list = []
 h_cm_1_list = []
 h_cm_2_list = []
+h_cm_3_list = []
+
+rho_12_list = []
+rho_23_list = []
 
 for suffix in suffixes:
     folder_name = f"AOA{suffix}_R12_test"
@@ -37,9 +45,19 @@ for suffix in suffixes:
     cm_0 = data['cm_0']
     h_cl_1_list.append(data['h_cl_1'])
     h_cl_2_list.append(data['h_cl_2'])
+    h_cl_3_list.append(data['h_cl_3'])
     h_cm_1_list.append(data['h_cm_1'])
     h_cm_2_list.append(data['h_cm_2'])
-    
+    h_cm_3_list.append(data['h_cm_3'])
+
+    rho_12 = np.linalg.norm(data['h_cl_2']) / np.linalg.norm(data['h_cl_1']) * A_ref
+    rho_23 = np.linalg.norm(data['h_cl_3']) / np.linalg.norm(data['h_cl_2']) * A_ref
+
+    rho_12_list.append(rho_12)
+    rho_23_list.append(rho_23)
+
+
+
 
 fig, ax = plt.subplots(2, 2, figsize=(10, 8))
 

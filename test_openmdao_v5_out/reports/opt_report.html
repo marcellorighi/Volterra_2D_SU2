@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>OpenMDAO Optimization Report for Problem test_openmdao_v5</title>
+
+<!-- CSS style to set alternate table
+row using color -->
+<style>
+    body {
+        font: normal 10px Verdana, Arial, sans-serif;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 90%;
+    }
+
+    th {
+      background-color: SlateGray;
+      color: black;
+      }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: LightGray;
+    }
+
+    tr:nth-child(odd) {
+        background-color: GhostWhite;
+    }
+
+    span.equality-constraint {
+        font-size: 25px;
+     }
+    span.equality-constraint-satisfied {
+        font-size: 25px;
+        color: green;
+     }
+    span.equality-constraint-violated {
+        font-size: 25px;
+        color: red;
+     }
+</style>
+</head>
+
+<body>
+<h1>OpenMDAO Optimization Report for Problem test_openmdao_v5 (All values are in unscaled, physical units)</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2></h2>
+        <table style="border: 1px solid #999; border-collapse: collapse;">
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Problem:</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">test_openmdao_v5</td></tr>
+       <tr style="background-color: #F3F3F3;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Script:</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">test_openmdao_v5.py</td></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Optimizer:</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">ScipyOptimize_SLSQP</td></tr>
+       <tr style="background-color: #F3F3F3;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Number of driver iterations:</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">2270</td></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Number of model evals:</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">2270</td></tr>
+       <tr style="background-color: #F3F3F3;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Number of deriv evals:</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">646</td></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Execution start time:</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">2026-05-23 15:18:02 </td></tr>
+       <tr style="background-color: #F3F3F3;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Wall clock run time:</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">00 hours 00 minutes 20 seconds 409.0 milliseconds</td></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Exit status:</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">SUCCESS</td></tr>
+    </table>
+</body>
+</html>
+
+<h2>Objectives</h2>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2></h2>
+        <table style="border: 1px solid #999; border-collapse: collapse;">
+        <tr><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">name</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">val</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: right;">ref</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: right;">ref0</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">adder</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">scaler</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">units</th></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">objective</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">[827.0946899]</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: right;">1.0</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: right;">0.0</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"></td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"></td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"></td></tr>
+    </table>
+</body>
+</html>
+
+<h2>Design Variables</h2>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2></h2>
+        <table style="border: 1px solid #999; border-collapse: collapse;">
+        <tr><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">name</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">alias</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: right;">size</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">min</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">max</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">mean</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">lower</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">upper</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">equals</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">ref</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">ref0</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">units</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">visual</th></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">h_cl</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"></td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: right;">480</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">|-0.102|</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">|1.21|</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">|0.00309|</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">-45</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">45</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"></td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">1</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">0</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"></td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"><img width=300 src='data:image/png;base64,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'></td></tr>
+       <tr style="background-color: #F3F3F3;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">h_cm</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"></td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: right;">480</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">|-1.26|</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">|0.25|</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">|0.00474|</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">-45</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">45</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"></td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">1</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">0</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"></td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;"><img width=300 src='data:image/png;base64,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'></td></tr>
+    </table>
+</body>
+</html>
+
+<h2>Constraints</h2>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2></h2>
+        <table style="border: 1px solid #999; border-collapse: collapse;">
+    </table>
+</body>
+</html>
+
+<h2>Optimizer settings</h2>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2></h2>
+        <table style="border: 1px solid #999; border-collapse: collapse;">
+        <tr><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">Setting</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">Val</th><th style="border: 1px solid #999; border-collapse: collapse; padding: 5px; background-color: #E9E9E9; text-align: left;">Description</th></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">debug_print</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">[]</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">List of what type of Driver variables to print at each iteration.</td></tr>
+       <tr style="background-color: #F3F3F3;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">invalid_desvar_behavior</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">warn</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Behavior of driver if the initial value of a design variable exceeds its bounds. The default value may beset using the `OPENMDAO_INVALID_DESVAR_BEHAVIOR` environment variable to one of the valid options.</td></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">optimizer</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">SLSQP</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Name of optimizer to use</td></tr>
+       <tr style="background-color: #F3F3F3;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">tol</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">1e-10</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Tolerance for termination. For detailed control, use solver-specific options.</td></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">maxiter</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">12500</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Maximum number of iterations.</td></tr>
+       <tr style="background-color: #F3F3F3;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">disp</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">True</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Value of &quot;disp&quot; argument provided to scipy.optimize.minimize which controls the verbosity of the optimization.</td></tr>
+       <tr style="background-color: ghostwhite;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">singular_jac_behavior</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">warn</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Defines behavior of a zero row/col check after first call tocompute_totals:error - raise an error.warn - raise a warning.ignore - don&#x27;t perform check.</td></tr>
+       <tr style="background-color: #F3F3F3;"><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">singular_jac_tol</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">1e-16</td><td style="border: 1px solid #999; border-collapse: collapse; padding: 5px; text-align: left;">Tolerance for zero row/column check.</td></tr>
+    </table>
+</body>
+</html>
+
+</body>
+
+</html>

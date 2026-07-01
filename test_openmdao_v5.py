@@ -755,16 +755,16 @@ def response(kernels, aoa, nt):
     
     return cn 
     
-AOA = 2
-MACH = 74
+AOA = 5
+MACH = 76
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_linear_test" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_SAopts_test" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_test_2" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_test" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine_verylarge" % AOA
-# home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine" % AOA
-home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine_2" % AOA
-#home_pitch = "/Users/marcello/Documents/SU2/SC20414/M0%s_veryfine" % MACH
+home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine" % AOA
+#home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine_2" % AOA
+# home_pitch = "/Users/marcello/Documents/SU2/SC20414/M0%s_veryfine" % MACH
 filename = home_pitch + "/history_05_00002.dat"    
 
 mach = 0.8
