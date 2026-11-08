@@ -154,7 +154,7 @@ def time_integration(theta_cl, theta_cl2, h_cl_3, theta_cm, theta_cm2, h_cm_3, d
 
     # aerodynamic forces contribution by (n+1) aoa_eff
 
-    beta = 0.5 
+    beta = 0.05 
 
     Q_lift = q * area 
     Q_ma = q * area * chord 
@@ -524,19 +524,19 @@ CASE = 1
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_test/" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_SAopts_test/" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine/" % AOA
-# home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine_2/" % AOA
+home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine_2/" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine_3/" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_veryfine_verylarge/" % AOA
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/M0%s_veryfine/" % MACH
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_SAopts_veryfine/" % AOA
-# dt = 2.5 e-4
+dt = 2.5e-4
 V_freestream = 123.*MACH/80
 
 # Michael 
-home_pitch = "/Users/marcello/Documents/Ael/bscw/Data_from_Michael/AOA0%s" % AOA
+# home_pitch = "/Users/marcello/Documents/Ael/bscw/Data_from_Michael/AOA0%s" % AOA
 # home_pitch = "/Users/marcello/Documents/Ael/bscw/Data_from_Michael/AOA0%s_fine" % AOA
-dt = 2.0e-4
-V_freestream = 131.41
+# dt = 2.0e-4
+# V_freestream = 131.41
 
 # Case 2 
 # home_pitch = "/Users/marcello/Documents/SU2/bscw/M0%s" % MACH
@@ -564,154 +564,15 @@ print("Cm0 = ",cm_0)
 print("V freestream", V_freestream)
 # ================
 
-# fig, ax = plt.subplots(2, 2, figsize=(10, 8))
-
-# plt.subplot(2, 2, 1)
-
-# plt.plot(h_cl_1,label="Two-step")
-# plt.xlabel(r'$\tau\,[\,]$')
-# plt.ylabel(r'$w\, [\,]$')
-# plt.legend()
-# plt.grid(True)
-
-# plt.subplot(2, 2, 2)
-
-# plt.plot(h_cm_1,label="Two-step")
-# plt.xlabel(r'$\tau\,[\,]$')
-# plt.ylabel(r'$w\, [\,]$')
-# plt.legend()
-# plt.grid(True)
-
-# plt.subplot(2, 2, 3)
-
-# plt.plot(h_cl_2,label="2nd")
-# plt.plot(h_cl_3,label="3rd")
-# plt.xlabel(r'$\tau\,[\,]$')
-# plt.ylabel(r'$w\, [\,]$')
-# plt.legend()
-# plt.grid(True)
-
-# plt.subplot(2, 2, 4)
-
-# plt.plot(h_cm_2,label="2nd")
-# plt.plot(h_cm_3,label="3rd")
-# plt.xlabel(r'$\tau\,[\,]$')
-# plt.ylabel(r'$w\, [\,]$')
-# plt.legend()
-# plt.grid(True)
-
-# plt.tight_layout()
-# plt.show()
-
-# time_test, aoa = plot_aero_responses(h_cl_1[:m], h_cl_1[2*m:], h_cl_1[m:2*m], 
-#                         h_cm_1[:m], h_cm_1[2*m:], h_cm_1[m:2*m], 
-#                         omega = 20., nt_int = 5000, dt = 2.5e-4)
-
 print(h_cl_1.shape)
 print(h_cl_2.shape)
 print(h_cl_3.shape)
 
-Q_test =5250.
+Q_test = 20*47.8803
 
-# Michael 3 deg
-# cl_0 = 0.46
-# cm_0 = 0.032665
-
-# Michael 4 deg
-# cl_0 = 0.54
-# cm_0 = 0.05140
-
-
-# Michael 4 deg
-# cl_0 = 0.2755602869928534
-# Cm_0 = -0.014693680173156351 
-
-# Michael 0 deg
-# cl_0 = 0.180
-# Cm_0 = -0.037 
 
 print("Cl_0 and Cm_0",cl_0,cm_0)
 
 time_int, results = time_integration(h_cl_1, h_cl_2, h_cl_3, h_cm_1, h_cm_2, h_cm_3, delta_t = dt, m = m, nt_int =22000, xi = 0.00, v_inf=V_freestream, q = Q_test, cl_0 = cl_0, cm_0=cm_0)
 
-# filepath = write_modal_data(
-#     time    = time_int,
-#     qq      = results,
-#     Team    = 'ZHAW',
-#     Dataset = 1,
-#     Case    = CASE,
-#     Mach    = MACH,
-#     AoA     = AOA,
-#     Q       = Q_test/47.8803,
-#     Mesh    = 'Coarse',
-#     Dt      = 0.00025,
-#     output_folder = '/Users/marcello/Documents/SU2/bscw/AePW4_Data'
-# )
-
-# SA plain 
-# 0 deg: 9650 3.90 Hz
-# 1 deg: 10075 3.95 Hz
-# 2 deg: 10550 4.10 Hz
-# 3 deg: 10100 4.33 Hz
-# 4 deg:  7250 4.5 Hz 
-# 4.5 deg: 7300 4.65 Hz
-# 5 deg: 6600 4.75 Hz 
-# 6 deg: 2900, 5.2 Hz pitch
-
-# SA all options 
-
-# Michael's med 
-# 0 deg: 8500  4 Hz -> 8600, 4.02 Hz
-# 1 deg: 8900  3.97 Hz -> 8600 4.05 -> < 8100 
-# 2 deg: 9200  4.05 Hz -> 9100 4.05 Hz -> 8400 4.14 
-# 3 deg: 9800. 4.11 Hz  -> 9700, 4.12 Hz 
-# 4 deg: 8800???  4.50 Hz 
-# 5 deg: 2000??? 5+Hz -> 4250 4.9 Hz, uncertainty 250
-
-# Michael's fine 
-# 3 deg: 9800 4.08 Hz -> 9400 4.14 Hz -> 9500 ?? 
-# 4 deg: 9000??? -> 9600 -> 9200, 4.4 
-# 5 deg: 3000??? -> 4250 4.9 Hz Unc. 250 
-
-"""
-2D fine grid
-
-0. deg: 9450 3.93 Hz
-1. deg: 10500 3.90 Hz -> 10375
-2. deg: 11250 > q > 11210 4.3 Hz -> 12000 -> 10900
-3. deg: 10600 < q < 10800 4.5 Hz -> 12750-13000 4.03 Hz 
-4. deg: 9500??? 4.6 Hz?
-4.5 deg: 7900 4.7 Hz
-5. deg: 5250 4.75 Hz 
-6. deg: 3300??? 5 Hz 
-
-2D fine grid SA options 
-
-0. deg: 9125 3.87 Hz
-1. deg: 9750 3.85 Hz
-2. deg: 10375 3.85 Hz
-3. deg: 12400 3.99 Hz 
-4. deg: 5500 4.75 Hz 
-5. deg: 0. 5.20
-6. deg: 0. 5.20 Hz
-
-AOA = 3 deg 2D
-
-M = 0.74: 9020
-M = 0.76: 9450  4.16 Hz 
-M = 0.78: 10900 4.33 Hz 
-M = 0.80:  10600 < q < 10800 4.5 Hz
-M = 0.82:  15200 4.33 Hz  
-M = 0.84: < 17500 (divergence!) 
-
-AOA = 3 deg 3D
-
-M = 0.74: -
-M = 0.76: 8250, 4.25 Hz??? 
-M = 0.78: 8600, 4.25 Hz??? -> 10000
-M = 0.80: 11200. 4.03 Hz??? -> 12600??? 4.03 Hz
-M = 0.82: 13500, 4.04 Hz???
-M = 0.84: - 
-
-"""
 

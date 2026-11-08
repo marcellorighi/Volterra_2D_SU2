@@ -1,0 +1,17 @@
+
+
+
+
+   ---------------------------------------------------------------------------
+     START OF THE SEQUENTIAL LEAST SQUARES PROGRAMMING ALGORITHM
+   ---------------------------------------------------------------------------
+
+     PARAMETERS:
+        ACC =   0.1000D-09
+        MAXITER =****
+        IPRINT =   1
+        IOUT =  60
+
+
+        NUMBER OF FUNC-CALLS:  NFUNC =   1
+        NUMBER OF GRAD-CALLS:  NGRAD =   1

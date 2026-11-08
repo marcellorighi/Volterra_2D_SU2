@@ -153,7 +153,7 @@ def time_integration(theta_cl, theta_cl2, h_cl_3, theta_cm, theta_cm2, h_cm_3, d
 
     # aerodynamic forces contribution by (n+1) aoa_eff
 
-    beta = 0.5 
+    beta = 0.05 
 
     Q_lift = q * area 
     Q_ma = q * area * chord 
@@ -340,26 +340,26 @@ def time_integration(theta_cl, theta_cl2, h_cl_3, theta_cm, theta_cm2, h_cm_3, d
 
 
 
-    # fig, ax = plt.subplots(2, 1, figsize=(10, 8))
+    fig, ax = plt.subplots(2, 1, figsize=(10, 8))
 
-    # plt.subplot(2, 1, 1)
+    plt.subplot(2, 1, 1)
 
-    # plt.plot(time_int,qq[0,:],'k-',linewidth=2,label=r"$\theta$")
-    # plt.xlabel(r'$t\,[s]$')
-    # plt.ylabel(r'$z\, [m]$')
-    # plt.legend()
-    # plt.grid(True)
+    plt.plot(time_int,qq[0,:],'k-',linewidth=2,label=r"$\theta$")
+    plt.xlabel(r'$t\,[s]$')
+    plt.ylabel(r'$z\, [m]$')
+    plt.legend()
+    plt.grid(True)
 
-    # plt.subplot(2, 1, 2)
+    plt.subplot(2, 1, 2)
 
-    # plt.plot(time_int,qq[1,:]*180/np.pi,'k-',linewidth=2,label=r"$\theta$")
-    # plt.xlabel(r'$t\,[s]$')
-    # plt.ylabel(r'$\theta\, [DEG]$')
-    # plt.legend()
-    # plt.grid(True)
+    plt.plot(time_int,qq[1,:]*180/np.pi,'k-',linewidth=2,label=r"$\theta$")
+    plt.xlabel(r'$t\,[s]$')
+    plt.ylabel(r'$\theta\, [DEG]$')
+    plt.legend()
+    plt.grid(True)
 
-    # plt.tight_layout() 
-    # plt.show()
+    plt.tight_layout() 
+    plt.show()
 
     return time_int, qq
 
@@ -512,7 +512,8 @@ AOA = 4
 MACH = 80
 CASE = 1
 folder = "Case_1"
-DATASET = 4
+# DATASET = 1 # case 1, medium grid
+DATASET = 4 # case 1, fine grid
 
 # first order kernel 
 # home_pitch = "/Users/marcello/Documents/SU2/SC20414/AOA0%s_R12_test_2/" % AOA
@@ -528,7 +529,7 @@ DATASET = 4
 # home_pitch = "/Users/marcello/Documents/SU2/bscw/M0%s" % MACH
 
 # Michael 
-# home_pitch = "/Users/marcello/Documents/Ael/bscw/Data_from_Michael/AOA0%s" % AOA
+# home_pitch = "/Users/marcello/Documents/Ael/bscw/Data_from_Michael/AOA0%s" % AOA
 home_pitch = "/Users/marcello/Documents/Ael/bscw/Data_from_Michael/AOA0%s_fine" % AOA
 
 filename = home_pitch + "/kernels_1_to_3.npz"    
@@ -603,8 +604,8 @@ print(h_cl_2.shape)
 print(h_cl_3.shape)
 
 nQ = 9
-Q_min =165*47.8803
-Delta_Q = 5*47.8803
+Q_min =170*47.8803
+Delta_Q = 7.5*47.8803
 # Q_min = 170*47.8803
 # Delta_Q = 5*47.8803
 Q_max = Q_min + Delta_Q*nQ 
@@ -614,6 +615,8 @@ Q_array = np.linspace(Q_min,Q_max,nQ+1)
 for iQ in range(nQ):
 
     Q_test = Q_array[iQ] 
+
+    print("Q =", Q_test / 47.8803, " psf ")
 
     time_int, results = time_integration(h_cl_1, h_cl_2, h_cl_3, h_cm_1, h_cm_2, h_cm_3, delta_t = 2.5e-4, m = m, nt_int = 20000, xi = 0.000, v_inf=V_freestream, q = Q_test, cl_0 = cl_0, cm_0=cm_0)
 
@@ -626,8 +629,10 @@ for iQ in range(nQ):
         Mach    = MACH/100,
         AoA     = AOA,
         Q       = Q_test/47.8803,
+        # Mesh    = 'Medium',
         Mesh    = 'Fine',
-        Dt      = 0.00025,
+        Dt      = 0.00020,
+        # Dt      = 0.00025,
         output_folder = '/Users/marcello/Documents/SU2/bscw/AePW4_Data/' + folder
     )
 
